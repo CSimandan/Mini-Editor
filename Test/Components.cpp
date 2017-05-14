@@ -20,6 +20,8 @@ namespace TextEditor
 
 	Frame::Frame(std::shared_ptr<AppData<Frame>> data, wxStandardID groupID) : wxFrame(NULL, wxID_ANY, wxString("Blank"))
 	{
+		SetWindowStyle(wxMINIMIZE_BOX | wxMAXIMIZE_BOX | wxCAPTION | wxRESIZE_BORDER );
+
 		dataRef = data;
 		frameGroupID = groupID;
 
@@ -56,7 +58,7 @@ namespace TextEditor
 		Bind(wxEVT_MENU, &Frame::OnClose, this, wxID_CLOSE);
 		Bind(wxEVT_MENU, &Frame::OnCloseAll, this, wxID_CLOSE_ALL);
 
-		frameText = new wxTextCtrl(this, wxID_ANY, "Testing", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_RICH );
+		frameText = new wxTextCtrl(this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxTE_RICH);
 
 		frameText->Bind(wxEVT_TEXT, [=](wxCommandEvent&) { UpdateText(); }, wxID_ANY);
 
